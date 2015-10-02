@@ -1,20 +1,24 @@
 <?php
     
-    header("Content-Type:application/json");
+    	header("Content-Type:application/json");
     	
-    if(!empty($_GET['service'])){
-    	$service = 	$_GET['service'];
+    	if(!empty($_GET['service']))
+    	{
+    		$service = $_GET['service'];
 		
-		if($service == "login"){
+		if($service == "login")
+		{
 			verifyCredentials();
 		}
 		
-		if($service == "allContants"){
+		if($service == "allContants")
+		{
 			getAllContacts();
 		}
 	}
 	
-	function getAllContacts(){
+	function getAllContacts()
+	{
 		$contacts = array(
 						array(
 								'name' => 'Jaime Blanco',
