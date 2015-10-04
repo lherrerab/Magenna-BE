@@ -1,46 +1,57 @@
 <?php
     
-    	header("Content-Type:application/json");
-    	
-    	if(!empty($_GET['service']))
-    	{
-    		$service = $_GET['service'];
+    header("Content-Type:application/json");
 		
-		if($service == "login")
-		{
+    if(!empty($_GET['service'])){
+    	$service = 	$_GET['service'];
+		
+		if($service == "login"){
 			verifyCredentials();
 		}
 		
-		if($service == "allContants")
-		{
+		if($service == "allContants"){
 			getAllContacts();
+		}
+		
+		if($service == "newContact"){				
+			createContact($_GET['name'], $_GET['phone'], $_GET['email']);
 		}
 	}
 	
-	function getAllContacts()
-	{
+	function getAllContacts(){
 		$contacts = array(
 						array(
 								'name' => 'Jaime Blanco',
 								'phone' => '3157252650',
 								'email' => 'jblanco@hotmail.com',
-								'added_on' => new MongoDate(strtotime('30-09-1983 00:00:00'))
+								'added_on' => '30-09-1983'
 								),						
 						array(
 								'name' => 'Camila Pata',
 								'phone' => '3017202510',
 								'email' => 'cpata@hotmail.com',
-								'added_on' => new MongoDate(strtotime('28-10-1983 00:00:00'))
+								'added_on' => '28-10-1983'
 								),						
 						array(
 								'name' => 'Daniel Perez',
 								'phone' => '3134250285',
 								'email' => 'dperez@hotmail.com',
-								'added_on' => new MongoDate(strtotime('20-09-1983 00:00:00'))
+								'added_on' => '20-09-1983'
 								)														
 						);
 		
 		deliver_response(200, "Contacts sent", $contacts);				
+	}
+	
+	function createContact($name, $phone, $email){
+		$newContact = array(
+						'name' => $name,
+						'phone' => $phone,
+						'email' => $email,
+						'added_on' => '21-10-2015'					
+						);
+	
+		deliver_response(200, "Contacts sent", $newContact);				
 	}
 	
 	function verifyCredentials(){
